@@ -15,6 +15,7 @@ const mongoURI = "mongodb+srv://redmenIshab:2D5KPigID2s24CsD@mern-mmamc.iobwd2h.
 })();
 
 const app = express();
+app.use(express.json());
 
 let publicAccess = true;
 app.get('/',(req,res, next)=>{ 

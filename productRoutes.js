@@ -1,25 +1,20 @@
 import { Router } from "express";
+import {
+  createProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+  getRecommendations,
+  updateProduct,
+} from "./controllers/productController.js";
+
 const productRoutes = Router();
 
-productRoutes.get("/", (req, res, next) => {
-  return res.send("Products page from Express server");
-});
-
-productRoutes.get("/:id", (req, res, next) => {
-  const productId = req.params.id;
-   return res
-    .status(200)
-    .send(`Product details for product ID: ${productId}`);
-});
-
-productRoutes.get("/recommmendations", (req, res, next) => {
-  return res.send("Product recommendations from Express server");
-});
-
-productRoutes.get("/:id/recommendations", (req, res, next) => {
-  const productId = req.params.id;
-  
-  return res.send(`Product recommendations for product ID: ${productId}`);
-});
+productRoutes.get("/", getProducts);
+productRoutes.post("/", createProduct);
+productRoutes.get("/:id/recommendations", getRecommendations);
+productRoutes.get("/:id", getProductById);
+productRoutes.patch("/:id", updateProduct);
+productRoutes.delete("/:id", deleteProduct);
 
 export default productRoutes;
