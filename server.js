@@ -2,8 +2,9 @@ import {createServer} from 'node:http';
 import express from 'express';
 import productRoutes from './productRoutes.js';
 import mongoose from 'mongoose';
+import 'dotenv/config';
 
-const mongoURI = "mongodb+srv://redmenIshab:2D5KPigID2s24CsD@mern-mmamc.iobwd2h.mongodb.net/";
+const mongoURI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@mern-mmamc.iobwd2h.mongodb.net/`;
 
 (async()=>{
     try{
