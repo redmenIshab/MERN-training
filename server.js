@@ -1,8 +1,10 @@
 import {createServer} from 'node:http';
 import express from 'express';
-import productRoutes from './productRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import corruptsRoutes from './routes/corruptsRoutes.js';
+import cors from 'cors';
 
 const mongoURI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@mern-mmamc.iobwd2h.mongodb.net/`;
 
@@ -16,6 +18,7 @@ const mongoURI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.D
 })();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 let publicAccess = true;
@@ -37,8 +40,10 @@ app.get("/about",(req,res,next)=>{
 })
 
 app.use("/products",productRoutes);
+// corrupts lists endpoints
+app.use("/corrupts", corruptsRoutes);
 
 
-app.listen(8000,()=>{
+app.listen(8008,()=>{
     console.log("Express server is running on port 8000")
 })
